@@ -28,17 +28,5 @@ git push -u origin master 6、提交到主分支 git push origin master 7、创�
       <description></description>
     </item>
     
-    <item>
-      <title></title>
-      <link>https://qiaoqiao321.github.io/liuyy/posts/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://qiaoqiao321.github.io/liuyy/posts/git-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/</guid>
-      <description>git 常用命令总结 先附上一张git 的工作原理图：
-1、初始化仓库 git init 2、添加本地所有代码，添加到暂存区 git add . 3、提交代码描述 git commit -m &amp;#39;增加新的功能&amp;#39; 4、添加远程仓库，将远程仓库命名为 origin git remote add origin git@github.com:xxxx/xxx.git 5、初始化推送 -u 的含义是将本地仓库关联到远程仓库，简单来说，带上-u 参数其实就相当于记录了push到远端分支的默认值，这样当下次我们还想要继续push的这个远端分支的时候推送命令就可以简写成git push即可
-git push -u origin master 6、提交到主分支 git push origin master 7、创建分支 git checkout -b &amp;lt;branchname&amp;gt; # -build 8、查看分支 git branch 9、提交到分支 git push origin dev:将本地的dev 分支push到远程的dev 分支（不是将当前分支！！！！！！！！！！！！！）
-如果本地分支与远程分支不同名，那么用这个就会报错。正确命令如下： 1.首先将本地与远程分支成功追踪（track）： git branch &amp;ndash;set-upstream-to=origin/dev_remote:当前分支与远程dev_remote分支绑定 2.推送到远程，注意方式不一样，要多一个 &amp;quot; head: &amp;ldquo;，后面跟分支名 git push origin head:dev_remote 如果在使用了&amp;ndash;set-upstream-to 后要推送到同名分支，可以直接使用git push origin head命令</description>
-    </item>
-    
   </channel>
 </rss>
