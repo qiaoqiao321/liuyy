@@ -1,0 +1,4 @@
+baseURL = 'https://qiaoqiao321.github.io/liuyy'
+languageCode = 'en-us'
+title = 'My Blog'
+theme = 'ananke'
