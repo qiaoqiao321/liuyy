@@ -124,7 +124,8 @@
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          
+          123456
+7891011
         </div>
           <a href="/liuyy/posts/my-first-post/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
@@ -162,8 +163,62 @@ git push -u origin master 6、提交到主分支 git push origin master 7、创�
 
           </div>
         
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/liuyy/posts/go-mod-%E7%9A%84%E4%BD%BF%E7%94%A8/" class="color-inherit dim link">
+            go mod 的使用
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          go mod 的使用 1、一个包管理工具应该有以下功能： 基本功能
+依赖管理 依赖包版本控制 对应的包管理平台 可以私有化部署（不是很懂） 加分：
+代码包是否可以复用 构建，测试,打包 发布上线 2、go path 和 go vendor 的问题 go path
+代码开发必须在go path src目录下，不然，就有问题。 依赖手动管理 依赖包没有版本可言 从这个看， go path不算包管理工具
+go vendor
+解决了包依赖，一个配置文件就管理 依赖包全都下载到项目vendor下，每个项目都把有一份。拉取项目时,开始怀疑人生。 3、go mod 介绍 go modules 是 golang 1.11 新加的特性。modules是相关Go包的集合。modules是源代码交换和版本控制的单元。go命令直接支持使用modules，包括记录和解析对其他模块的依赖性。modules替换旧的基于GOPATH的方法来指定在给定构建中使用哪些源文件。
+GO111MODULE
+GO111MODULE 有三个值：off, on和auto（默认值）。
+GO111MODULE=off，go命令行将不会支持module功能，寻找依赖包的方式将会沿用旧版本那种通过vendor目录或者GOPATH模式来查找。GOPATH模式下，依赖包存储在$GOPATH/src，该目录下只保存特定依赖包的一个版本。
+GO111MODULE=on，go命令行会使用modules，而不会去GOPATH目录下查找。GOMODULE模式下，依赖包存储在$GOPATH/pkg/mod，该目录中可以存储特定依赖包的多个版本。需要注意的是$GOPATH/pkg/mod目录下有个Cache目录，它用来存储依赖包的缓存，简单说，go命令每次下载新的依赖包都会在该Cache目录中保存一份。
+GO111MODULE=auto，默认值，go命令行将会根据当前目录来决定是否启用module功能。这种情况下可以分为两种情形：
+当前目录在GOPATH/src之外且该目录包含go.mod文件 当前文件在包含go.mod文件的目录下面。 4、go mod 命令 比较常用的是 go mod init 模块名、go mod tidy、go mod edit
+go.mod 提供了module, require、replace和exclude 四个命令
+module 语句指定包的名字（路径） require 语句指定的依赖项模块 replace 语句可以替换依赖项模块 exclude 语句可以忽略依赖项模块 go get 命令可以借助代码管理工具通过远程拉取或更新代码包及其依赖包，并自动完成编译和安装。整个过程就像安装一个 App 一样简单。这个命令在内部实际上分成了两步操作：第一步是下载源码包，第二步是执行 go install。
+        </div>
+          <a href="/liuyy/posts/go-mod-%E7%9A%84%E4%BD%BF%E7%94%A8/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
       </section>
 
+      
+      <section class="w-100">
+        <h1 class="f3">More</h1>
+        
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/liuyy/posts/%E5%9C%A8c&#43;&#43;%E9%A1%B9%E7%9B%AE%E4%B8%AD%E9%98%B2%E6%AD%A2%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98/" class="link black dim">
+              在c/c&#43;&#43; 项目中防止头文件重复包含问题
+            </a>
+          </h2>
+        
+
+        
+        
+          <a href="/liuyy/posts/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All Posts</a>
+        
+        </section>
       
 
       </div>

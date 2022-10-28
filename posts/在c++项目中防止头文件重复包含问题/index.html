@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>在c/c&#43;&#43; 项目中防止头文件重复包含问题 | My Blog</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="在c/c&#43;&#43; 项目中防止头文件重复包含问题 1、头文件重复包含的问题 头文件重复包含会导致重复定义（重复定义可以是变量也可以是函数等），最后导致编译报错。
+在c/c&#43;&#43;中，声明和定义是完全不同的
+声明：声明是指出变量存储类型，并声明其名字
+定义：为变量分配存储空间，还可为变量指定初始值
+extern关键字标识的才是声明，其余都是定义
+例如：extern int val; // 声明
+int val; // 定义
+extern int val = 1;//定义
+2、解决方法 使用条件编译 （#ifndef #define #endif )
+优点：粒度细，可以精细到具体代码片段， 缺点：但是因为每次都要查看文件是否已有宏定义，效率较低 使用预编译命令(#pragma once)
+优点：只需在文件开头加上 #pragma once 即可，效率较高，由编译器保证文件不会重复包含
+缺点：粒度较粗，只能针对整个文件，并且只能保证物理文件不重复包含，但是如果有多个拷贝，还是有重复包含的可能性，有些编译器不支持
+混合使用
+同时结合其优缺点，对于粒度细的控制，使用条件编译，不特殊情况，可以使用#pragma once 3、其他 在编写c/c&#43;&#43; 项目时，因为标准库文件都做了防止重复包含工作，所以只需将自己编写的头文件进行条件编译或者开头加上#pragma once 即可。">
+    <meta name="generator" content="Hugo 0.105.0-DEV">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/liuyy/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="在c/c&#43;&#43; 项目中防止头文件重复包含问题" />
+<meta property="og:description" content="在c/c&#43;&#43; 项目中防止头文件重复包含问题 1、头文件重复包含的问题 头文件重复包含会导致重复定义（重复定义可以是变量也可以是函数等），最后导致编译报错。
+在c/c&#43;&#43;中，声明和定义是完全不同的
+声明：声明是指出变量存储类型，并声明其名字
+定义：为变量分配存储空间，还可为变量指定初始值
+extern关键字标识的才是声明，其余都是定义
+例如：extern int val; // 声明
+int val; // 定义
+extern int val = 1;//定义
+2、解决方法 使用条件编译 （#ifndef #define #endif )
+优点：粒度细，可以精细到具体代码片段， 缺点：但是因为每次都要查看文件是否已有宏定义，效率较低 使用预编译命令(#pragma once)
+优点：只需在文件开头加上 #pragma once 即可，效率较高，由编译器保证文件不会重复包含
+缺点：粒度较粗，只能针对整个文件，并且只能保证物理文件不重复包含，但是如果有多个拷贝，还是有重复包含的可能性，有些编译器不支持
+混合使用
+同时结合其优缺点，对于粒度细的控制，使用条件编译，不特殊情况，可以使用#pragma once 3、其他 在编写c/c&#43;&#43; 项目时，因为标准库文件都做了防止重复包含工作，所以只需将自己编写的头文件进行条件编译或者开头加上#pragma once 即可。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://qiaoqiao321.github.io/liuyy/posts/%E5%9C%A8c&#43;&#43;%E9%A1%B9%E7%9B%AE%E4%B8%AD%E9%98%B2%E6%AD%A2%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98/" /><meta property="article:section" content="posts" />
+
+
+
+<meta itemprop="name" content="在c/c&#43;&#43; 项目中防止头文件重复包含问题">
+<meta itemprop="description" content="在c/c&#43;&#43; 项目中防止头文件重复包含问题 1、头文件重复包含的问题 头文件重复包含会导致重复定义（重复定义可以是变量也可以是函数等），最后导致编译报错。
+在c/c&#43;&#43;中，声明和定义是完全不同的
+声明：声明是指出变量存储类型，并声明其名字
+定义：为变量分配存储空间，还可为变量指定初始值
+extern关键字标识的才是声明，其余都是定义
+例如：extern int val; // 声明
+int val; // 定义
+extern int val = 1;//定义
+2、解决方法 使用条件编译 （#ifndef #define #endif )
+优点：粒度细，可以精细到具体代码片段， 缺点：但是因为每次都要查看文件是否已有宏定义，效率较低 使用预编译命令(#pragma once)
+优点：只需在文件开头加上 #pragma once 即可，效率较高，由编译器保证文件不会重复包含
+缺点：粒度较粗，只能针对整个文件，并且只能保证物理文件不重复包含，但是如果有多个拷贝，还是有重复包含的可能性，有些编译器不支持
+混合使用
+同时结合其优缺点，对于粒度细的控制，使用条件编译，不特殊情况，可以使用#pragma once 3、其他 在编写c/c&#43;&#43; 项目时，因为标准库文件都做了防止重复包含工作，所以只需将自己编写的头文件进行条件编译或者开头加上#pragma once 即可。">
+
+<meta itemprop="wordCount" content="45">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在c/c&#43;&#43; 项目中防止头文件重复包含问题"/>
+<meta name="twitter:description" content="在c/c&#43;&#43; 项目中防止头文件重复包含问题 1、头文件重复包含的问题 头文件重复包含会导致重复定义（重复定义可以是变量也可以是函数等），最后导致编译报错。
+在c/c&#43;&#43;中，声明和定义是完全不同的
+声明：声明是指出变量存储类型，并声明其名字
+定义：为变量分配存储空间，还可为变量指定初始值
+extern关键字标识的才是声明，其余都是定义
+例如：extern int val; // 声明
+int val; // 定义
+extern int val = 1;//定义
+2、解决方法 使用条件编译 （#ifndef #define #endif )
+优点：粒度细，可以精细到具体代码片段， 缺点：但是因为每次都要查看文件是否已有宏定义，效率较低 使用预编译命令(#pragma once)
+优点：只需在文件开头加上 #pragma once 即可，效率较高，由编译器保证文件不会重复包含
+缺点：粒度较粗，只能针对整个文件，并且只能保证物理文件不重复包含，但是如果有多个拷贝，还是有重复包含的可能性，有些编译器不支持
+混合使用
+同时结合其优缺点，对于粒度细的控制，使用条件编译，不特殊情况，可以使用#pragma once 3、其他 在编写c/c&#43;&#43; 项目时，因为标准库文件都做了防止重复包含工作，所以只需将自己编写的头文件进行条件编译或者开头加上#pragma once 即可。"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/liuyy/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        My Blog
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">在c/c&#43;&#43; 项目中防止头文件重复包含问题</h1>
+      
+      
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="在cc-项目中防止头文件重复包含问题">在c/c++ 项目中防止头文件重复包含问题</h2>
+<h3 id="1头文件重复包含的问题">1、头文件重复包含的问题</h3>
+<p>头文件重复包含会导致重复定义（重复定义可以是变量也可以是函数等），最后导致编译报错。</p>
+<p>在c/c++中，声明和定义是完全不同的</p>
+<ul>
+<li>
+<p>声明：声明是指出变量存储类型，并声明其名字</p>
+</li>
+<li>
+<p>定义：为变量分配存储空间，还可为变量指定初始值</p>
+</li>
+<li>
+<p>extern关键字标识的才是声明，其余都是定义</p>
+<p>例如：extern int val; // 声明</p>
+<p>int val; // 定义</p>
+<p>extern int val = 1;//定义</p>
+</li>
+</ul>
+<h3 id="2解决方法">2、解决方法</h3>
+<ol>
+<li>
+<p>使用条件编译 （#ifndef  #define #endif )</p>
+<ul>
+<li>优点：粒度细，可以精细到具体代码片段，</li>
+<li>缺点：但是因为每次都要查看文件是否已有宏定义，效率较低</li>
+</ul>
+<p><img src="C:%5CUsers%5Cqiaoqiao%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20221028164010616.png" alt="image-20221028164010616"></p>
+</li>
+<li>
+<p>使用预编译命令(#pragma once)</p>
+<ul>
+<li>
+<p>优点：只需在文件开头加上 #pragma once 即可，效率较高，由编译器保证文件不会重复包含</p>
+</li>
+<li>
+<p>缺点：粒度较粗，只能针对整个文件，并且只能保证物理文件不重复包含，但是如果有多个拷贝，还是有重复包含的可能性，有些编译器不支持</p>
+<p><img src="C:%5CUsers%5Cqiaoqiao%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20221028164122855.png" alt="image-20221028164122855"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>混合使用</p>
+<ul>
+<li>同时结合其优缺点，对于粒度细的控制，使用条件编译，不特殊情况，可以使用#pragma once</li>
+</ul>
+</li>
+</ol>
+<h3 id="3其他">3、其他</h3>
+<p>在编写c/c++ 项目时，因为标准库文件都做了防止重复包含工作，所以只需将自己编写的头文件进行条件编译或者开头加上#pragma once 即可。</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://qiaoqiao321.github.io/liuyy/" >
+    &copy;  My Blog 2022 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

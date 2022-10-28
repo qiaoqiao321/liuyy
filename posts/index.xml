@@ -13,7 +13,8 @@
       <pubDate>Mon, 17 Oct 2022 12:39:22 +0800</pubDate>
       
       <guid>https://qiaoqiao321.github.io/liuyy/posts/my-first-post/</guid>
-      <description></description>
+      <description>123456
+7891011</description>
     </item>
     
     <item>
@@ -26,6 +27,50 @@
 1、初始化仓库 git init 2、添加本地所有代码，添加到暂存区 git add . 3、提交代码描述 git commit -m &amp;#39;增加新的功能&amp;#39; 4、添加远程仓库，将远程仓库命名为 origin git remote add origin git@github.com:xxxx/xxx.git 5、初始化推送 -u 的含义是将本地仓库关联到远程仓库，简单来说，带上-u 参数其实就相当于记录了push到远端分支的默认值，这样当下次我们还想要继续push的这个远端分支的时候推送命令就可以简写成git push即可
 git push -u origin master 6、提交到主分支 git push origin master 7、创建分支 git checkout -b &amp;lt;branchname&amp;gt; # -build 8、查看分支 git branch 9、提交到分支 git push origin dev:将本地的dev 分支push到远程的dev 分支（不是将当前分支！！！！！！！！！！！！！）
 如果本地分支与远程分支不同名，那么用这个就会报错。正确命令如下： 1.首先将本地与远程分支成功追踪（track）： git branch &amp;ndash;set-upstream-to=origin/dev_remote:当前分支与远程dev_remote分支绑定 2.推送到远程，注意方式不一样，要多一个 &amp;quot; head: &amp;ldquo;，后面跟分支名 git push origin head:dev_remote 如果在使用了&amp;ndash;set-upstream-to 后要推送到同名分支，可以直接使用git push origin head命令</description>
+    </item>
+    
+    <item>
+      <title>go mod 的使用</title>
+      <link>https://qiaoqiao321.github.io/liuyy/posts/go-mod-%E7%9A%84%E4%BD%BF%E7%94%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://qiaoqiao321.github.io/liuyy/posts/go-mod-%E7%9A%84%E4%BD%BF%E7%94%A8/</guid>
+      <description>go mod 的使用 1、一个包管理工具应该有以下功能： 基本功能
+依赖管理 依赖包版本控制 对应的包管理平台 可以私有化部署（不是很懂） 加分：
+代码包是否可以复用 构建，测试,打包 发布上线 2、go path 和 go vendor 的问题 go path
+代码开发必须在go path src目录下，不然，就有问题。 依赖手动管理 依赖包没有版本可言 从这个看， go path不算包管理工具
+go vendor
+解决了包依赖，一个配置文件就管理 依赖包全都下载到项目vendor下，每个项目都把有一份。拉取项目时,开始怀疑人生。 3、go mod 介绍 go modules 是 golang 1.11 新加的特性。modules是相关Go包的集合。modules是源代码交换和版本控制的单元。go命令直接支持使用modules，包括记录和解析对其他模块的依赖性。modules替换旧的基于GOPATH的方法来指定在给定构建中使用哪些源文件。
+GO111MODULE
+GO111MODULE 有三个值：off, on和auto（默认值）。
+GO111MODULE=off，go命令行将不会支持module功能，寻找依赖包的方式将会沿用旧版本那种通过vendor目录或者GOPATH模式来查找。GOPATH模式下，依赖包存储在$GOPATH/src，该目录下只保存特定依赖包的一个版本。
+GO111MODULE=on，go命令行会使用modules，而不会去GOPATH目录下查找。GOMODULE模式下，依赖包存储在$GOPATH/pkg/mod，该目录中可以存储特定依赖包的多个版本。需要注意的是$GOPATH/pkg/mod目录下有个Cache目录，它用来存储依赖包的缓存，简单说，go命令每次下载新的依赖包都会在该Cache目录中保存一份。
+GO111MODULE=auto，默认值，go命令行将会根据当前目录来决定是否启用module功能。这种情况下可以分为两种情形：
+当前目录在GOPATH/src之外且该目录包含go.mod文件 当前文件在包含go.mod文件的目录下面。 4、go mod 命令 比较常用的是 go mod init 模块名、go mod tidy、go mod edit
+go.mod 提供了module, require、replace和exclude 四个命令
+module 语句指定包的名字（路径） require 语句指定的依赖项模块 replace 语句可以替换依赖项模块 exclude 语句可以忽略依赖项模块 go get 命令可以借助代码管理工具通过远程拉取或更新代码包及其依赖包，并自动完成编译和安装。整个过程就像安装一个 App 一样简单。这个命令在内部实际上分成了两步操作：第一步是下载源码包，第二步是执行 go install。</description>
+    </item>
+    
+    <item>
+      <title>在c/c&#43;&#43; 项目中防止头文件重复包含问题</title>
+      <link>https://qiaoqiao321.github.io/liuyy/posts/%E5%9C%A8c&#43;&#43;%E9%A1%B9%E7%9B%AE%E4%B8%AD%E9%98%B2%E6%AD%A2%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://qiaoqiao321.github.io/liuyy/posts/%E5%9C%A8c&#43;&#43;%E9%A1%B9%E7%9B%AE%E4%B8%AD%E9%98%B2%E6%AD%A2%E5%A4%B4%E6%96%87%E4%BB%B6%E9%87%8D%E5%A4%8D%E5%8C%85%E5%90%AB%E9%97%AE%E9%A2%98/</guid>
+      <description>在c/c++ 项目中防止头文件重复包含问题 1、头文件重复包含的问题 头文件重复包含会导致重复定义（重复定义可以是变量也可以是函数等），最后导致编译报错。
+在c/c++中，声明和定义是完全不同的
+声明：声明是指出变量存储类型，并声明其名字
+定义：为变量分配存储空间，还可为变量指定初始值
+extern关键字标识的才是声明，其余都是定义
+例如：extern int val; // 声明
+int val; // 定义
+extern int val = 1;//定义
+2、解决方法 使用条件编译 （#ifndef #define #endif )
+优点：粒度细，可以精细到具体代码片段， 缺点：但是因为每次都要查看文件是否已有宏定义，效率较低 使用预编译命令(#pragma once)
+优点：只需在文件开头加上 #pragma once 即可，效率较高，由编译器保证文件不会重复包含
+缺点：粒度较粗，只能针对整个文件，并且只能保证物理文件不重复包含，但是如果有多个拷贝，还是有重复包含的可能性，有些编译器不支持
+混合使用
+同时结合其优缺点，对于粒度细的控制，使用条件编译，不特殊情况，可以使用#pragma once 3、其他 在编写c/c++ 项目时，因为标准库文件都做了防止重复包含工作，所以只需将自己编写的头文件进行条件编译或者开头加上#pragma once 即可。</description>
     </item>
     
   </channel>
